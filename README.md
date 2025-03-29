@@ -4,7 +4,9 @@
 
 Firmware Version 2.2.16.704
 
-### Problems with FreeSWITCH
+### Usage with FreeSWITCH
+
+In general its best to use the `FreeSWITCH` setting in the Web Administration `Voice Over IP -> Services`.
 
 #### Registration Failure when using outbound proxy
 
@@ -25,6 +27,10 @@ Try that for all available codecs.
 When done, select the marked codecs from your list and assign them the positions from top in
 `Voice Over IP -> MediaStreaming`, set the others to none.
 Thats it. Now calls should work.
+
+#### DnD not working
+
+Solution: In the Web Administration `Voice Over IP -> Services`, select `FreeSWITCH` as `Application Server` `Type`, then set `SLA TYPE` `Type` to `None`. Then it should work. Also make sure that further down on that page `DND (Do Not Disturb)` `Enable` is set to `Enable`.
 
 ### Triggering calls from KDE with Kontact or other applications
 
