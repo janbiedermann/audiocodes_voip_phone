@@ -8,10 +8,6 @@ Firmware Version 2.2.16.704
 
 In general its best to use the `FreeSWITCH` setting in the Web Administration `Voice Over IP -> Services`.
 
-#### Registration Failure when using outbound proxy
-
-Solution: set outbound proxy port to 0
-
 #### Calls breaking
 
 Solution: use only those codecs that the FreeSWITCH can accept
