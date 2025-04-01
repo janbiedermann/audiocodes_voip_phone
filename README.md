@@ -30,7 +30,7 @@ Solution: In the Web Administration `Voice Over IP -> Services`, select `FreeSWI
 
 ### Triggering calls from KDE with Kontact or other applications
 
-Download the bash script `audiocodes_dial_number.sh`. The script uses curl, so make sure you have that.
+Download the bash script `audiocodes_dial_number.sh`. The script uses `curl`.
 It is preconfigured with the default `1234` phone admin password. If you changed the admin password of your phone,
 which you should, edit the script accordingly. Most importantly, set the IP address of your phone in the script.
 Make the script executable.
@@ -43,3 +43,13 @@ make sure its run in a Terminal, like in the screenshot below.
 ![Screenshot of KDE Settings](https://github.com/janbiedermann/audiocodes_voip_phone/blob/main/KDE_Settings.png?raw=true)
 
 Then try in Kontact clicking on a phone number and it should dial. Takes a moment though, the phone is kinda slow to react.
+
+### Lighting LEDs remotely
+
+Two example scripts are provided, one to turn the LCD backlight and the message indicator LED on
+`audiocodes_lights_on.sh` and one to turn them off `audiocodes_lights_off.sh`.
+Both require `telnet` and `expect`. Please change the IP address and admin password in the scripts
+accordingly and make sure `Telnet` is enabled in your phones Web Administration, `Management -> Remote Management`.
+Many LEDs of the audiocodes phones can be controlled using the `led_ctrl` command of the phone, however, the
+message indicator LED cannot be directly addressed. Turning this LED on/off only works by turning all LEDs on/off.
+Thats why the 'lights on' script turns all LEDs on and then turns the others off again.
