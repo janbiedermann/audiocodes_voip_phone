@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Dial Number
+Exec=/home/user/bin/audiocodes_dial_number.sh %u
+Type=Application
+Icon=call-start
+Terminal=true
+MimeType=x-scheme-handler/tel;x-scheme-handler/callto;

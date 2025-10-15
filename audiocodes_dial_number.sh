@@ -15,10 +15,13 @@ COOKIE_JAR="${HOME}/.audiocodes_cookie.jar"
 NUMBER=`echo "$1" | cut -d ':' -f2`
 
 echo "Number: ${NUMBER}"
+
 # optional:
 # read -p "Press enter to dial"
+
 echo "Loggin in ..."
 curl --insecure --silent --output /dev/null --cookie-jar $COOKIE_JAR --data-urlencode "user=admin" --data-urlencode "psw=${PSW}" --referer "https://${PHONE}/login.cgi" "https://${PHONE}/login.cgi"
 echo "Dialing ..."
 curl --insecure --silent --output /dev/null --cookie $COOKIE_JAR --data-urlencode "number=${NUMBER}" "https://${PHONE}/mainform.cgi/dial.htm"
 echo "Ringing!"
+sleep 5

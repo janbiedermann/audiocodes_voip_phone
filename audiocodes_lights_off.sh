@@ -9,7 +9,7 @@ send "admin\n"
 expect -ex "Password: "
 send "1234\n"
 expect -ex "\[admin@420HD ~\]$ "
-send "led_ctrl all off\n"
+send "led_ctrl header off\n"
 expect -ex "\[admin@420HD ~\]$ "
 send "exit\n"
 exit
