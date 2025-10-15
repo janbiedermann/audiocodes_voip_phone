@@ -84,8 +84,8 @@ All LEDs of the audiocodes phones can be controlled using the `led_ctrl` command
 ### Compiling executables
 
 I had success using [crosstool-ng](https://crosstool-ng.github.io/) to compile a simple *.c file for the phone.
-The file `crosstool-ng.config` is the crostool configuration that worked.
-Copy it to `.config` in your crosstool directory.
+The file `crosstool-ng.config` contains the crosstool-ng configuration that worked.
+Copy it to `.config` in your crosstool-ng directory.
 
 After compiling, the resulting binary can be transferred to the phone via wget. Make the file available for download
 from a web server, login to the phone via telnet, cd to `/tmp` and use wget to download the binary.
