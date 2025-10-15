@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/janbiedermann/audiocodes/master/audiocodes-420hd.webp" alt="AudioCodes 420HD">
+<img src="https://raw.githubusercontent.com/janbiedermann/audiocodes_voip_phone/master/audiocodes-420hd.webp" alt="AudioCodes 420HD">
 
 # Scripts and Tips for AudioCodes VoIP Phones
 
