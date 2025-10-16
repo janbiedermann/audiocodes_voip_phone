@@ -95,6 +95,6 @@ Then chmod +x the file and its ready to execute. Be aware that the files in `/tm
 
 In the `/tmp` directory of the phone is a file `lighttpd_access.conf`, which is included by the lighttpd config.
 Simply edit that file to provide a url rewrite or whatever you need to get your cgi executable working.
-Then `killall lighttpd` and start it again with `lighttpd -f /home/ipphone/lighttpd.conf` and your cgi should work.
+Then restart lighttpd with `/home/ipphone/scripts/httpd_restart.sh` and your cgi should work.
 Be aware that the `/tmp/lighttpd_access.conf` config file is deleted and recreated on each restart of the phone or the
 control-center application.
