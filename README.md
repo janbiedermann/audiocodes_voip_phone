@@ -148,8 +148,10 @@ The mtdblock3 JFFS2 is used for storing the configuration.
 ### Recovering the Phone
 
 The phone can be recoverd via a serial interface and connected network.
-The interface is on top of the phone, inside, behind the display.
-Taking it apart is easy, just 5 screws at back and a clip on the middle of each side.
+The pins for the interface is on top of the phone, inside, behind the display.
+Taking the phone apart is easy, just 5 screws at the back and a clip on the middle of each side.
+The serial interface connector has 4 pins, the 2 pins in the middle are TX and RX,
+the last pin in speaker direction is ground.
 When booting with the serial interface connected, pressing ESC will interrupt the bootloader and present a console.
 `help` will show available commands.
 The `upgrade` command can be used to get a firmware image via DHCP + TFTP.
