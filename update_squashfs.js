@@ -3,6 +3,8 @@
 // will create new_firmware.img with the squashfs in the rootfs.sqfs
 // firmware section replaced by new_root_squashfs.sqfs
 
+// Only use mksquashfs from the supplied squashfs-2.2-r2-7z !!!
+
 // Chances are the new image will brick your phone!
 
 import { readFileSync, writeFileSync } from "node:fs";
