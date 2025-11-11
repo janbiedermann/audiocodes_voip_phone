@@ -5,7 +5,7 @@
 
 // Chances are the new image will brick your phone!
 
-const fs = require("node:fs");
+import { readFileSync, writeFileSync } from "node:fs";
 
 const original_img = process.argv[2];
 const new_image = 'new_' + original_img;
@@ -79,7 +79,7 @@ function parse_section(name) {
   let data = Buffer.copyBytesFrom(buffer, start + header_length, data_length);
   let calculated_crc = checksum(data);
   if (section_crc != calculated_crc) {
-    throw new Error(`crc mismatch for section ${name}, section crc ${section_crc.toString(16)}, calculated crc ${calculated_crc.toString(16)} - ${crc32([1,2,3]).toString(16)}`);
+    throw new Error(`crc mismatch for section ${name}, section crc ${section_crc.toString(16)}, calculated crc ${calculated_crc.toString(16)} - ${crc32([1, 2, 3]).toString(16)}`);
   }
   pos = start + length;
   return length;
@@ -114,16 +114,16 @@ function set_section(name, type, data) {
 
 (function main() {
   console.log('updating ' + original_img)
-  buffer = fs.readFileSync(original_img);
+  buffer = readFileSync(original_img);
   parse_and_set_header();
   parse_and_set_section('psbl.bin');
   parse_and_set_section('ram_zimage.bin');
   parse_section('rootfs.sqfs');
-  set_section('rootfs.sqfs', 1, fs.readFileSync(new_squashfs))
+  set_section('rootfs.sqfs', 1, readFileSync(new_squashfs))
   parse_and_set_section('phone.img');
   parse_and_set_section('section.map');
   parse_and_set_section('flasher');
   parse_and_set_tail();
   console.log('writing ' + new_image)
-  fs.writeFileSync(new_image, new_buffer);
+  writeFileSync(new_image, new_buffer);
 })();
