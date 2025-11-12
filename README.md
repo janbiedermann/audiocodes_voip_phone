@@ -90,6 +90,7 @@ Copy it to `.config` in your crosstool-ng directory.
 After compiling, the resulting binary can be transferred to the phone via wget. Make the file available for download
 from a web server, login to the phone via telnet, cd to `/tmp` and use wget to download the binary.
 Then chmod +x the file and its ready to execute. Be aware that the files in `/tmp` are deleted on each restart.
+You may also modify the firmware to store your binary permanently, see below.
 
 ### Expanding the capabilites or API of the included Web Server
 
@@ -98,6 +99,7 @@ Simply edit that file to provide a url rewrite or whatever you need to get your 
 Then restart lighttpd with `/home/ipphone/scripts/httpd_restart.sh` and your cgi should work.
 Be aware that the `/tmp/lighttpd_access.conf` config file is deleted and recreated on each restart of the phone or the
 control-center application.
+You may also modify the firmware to make your changes permanent, see below.
 
 ### Analyzing the Firmware
 
@@ -141,14 +143,41 @@ Its using:
 Squashfs 2.1-r2 (released 2004/12/15) (C) 2002-2004 Phillip Lougher
 Squashfs 2.2 includes LZMA decompression support
 
-The lzma compressor uses some custom parameters. So far i had no luck creating a compatible squashfs image.
+The provides squashfs-2.2-r2-7z tools in this repo can be used to extract and create root squashfs images.
 
 The mtdblock3 JFFS2 is used for storing the configuration.
+
+### Modifying the Firmware
+
+With the tool `binwalk` in version 2.4 the original firmware image can be extracted. Part of the extracted files is the
+root fs squashfs image, for example extracted as `F5048.squashfs`.
+
+Binwalk will also try to extract this image, but results are faulty. However this image can be extracted with
+the squashfs-2.2-r2-7z tools contained in this repo.
+
+After compiling these tools the resulting `unsquashfs` can be used to correctly extract the orginal image. Extracting
+must be done as root user to get correct results. Files will be extracted to a directory.
+
+The they can then modified at will, offcourse at your own risk.
+
+When done modifying, `mksquashfs` from the squashfs-2.2-r2-7z tools can be used to create a new squashfs image from the
+directory. Make sure to only use this exact version! Using any other version of mksquashfs will prevent the phone from
+booting! Also it is very important that the size of the image does not exceed the size reserved for it in mtd0,
+see above.
+
+As last step the new firmware image must be created. I created a script for node js to do so, `update_squashfs.js`.
+Its very simple to use:
+`node update_squashfs.js firmware.img new_root.squashfs`
+
+This script will replace the root squashfs section of the original firmware image with the newly created squashfs and
+save the result as `new_firmware.img`.
+
+Happy Hacking!
 
 ### Recovering the Phone
 
 The phone can be recoverd via a serial interface and connected network.
-The pins for the interface is on top of the phone, inside, behind the display.
+The pins for the interface are on top of the phone, inside, behind the display.
 Taking the phone apart is easy, just 5 screws at the back and a clip on the middle of each side.
 The serial interface connector has 4 pins, the 2 pins in the middle are TX and RX,
 the last pin in speaker direction is ground.
